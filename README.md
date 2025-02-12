@@ -12,12 +12,13 @@ git pull origin main
 
 ## Actualizar contenidos desde remoto (pull)
 ```
+git pull origin main
+```
+
+## Subir cambios contenidos a remoto (push)
+```
 git add .
 git commit -m "organizados .java"
 git push origin main
 ```
-## Subir cambios contenidos a remoto (push)
 
-```
-git pull origin main
-```
