@@ -1,0 +1,1 @@
+Este fichero debe estar añadido al build path de eclipse, he subido esto a github en esta ubicacion pero esto no implica que "automáticamente" se añada al build path.

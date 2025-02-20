@@ -10,9 +10,10 @@ public class Principal {
 		Scanner entrada = new Scanner(System.in);
 		String bbdd = "equipo_colegio";
 		String user = "root";
-		String pwd = "";
+		String pwd = "root";
 		String server = "jdbc:mysql://localhost:3306/";
 		Connection conexion = null;
+
 		int opcion = 0;
 		int opcionTabla = 0;
 		do {
@@ -32,19 +33,26 @@ public class Principal {
 
 					switch (opcionTabla) {
 					case 1:
-						System.out.println("Visualización de la tabla1");
+						Metodos.mostrarDatosAlumnos();
+						System.out.println();
 						break;
 
 					case 2:
-						System.out.println("Visualización de la tabla2");
+						Metodos.mostrarDatosAsignaturas();
+						System.out.println();
+
 						break;
 
 					case 3:
-						System.out.println("Visualización de la tabla3");
+						Metodos.mostrarDatosNotas();
+						System.out.println();
+
 						break;
 
 					case 4:
-						System.out.println("Visualización de la tabla4");
+						Metodos.mostrarDatosProfesores();
+						System.out.println();
+
 						break;
 
 					case 5:
@@ -52,6 +60,8 @@ public class Principal {
 
 					default:
 						System.out.println("Opción inválida");
+						System.out.println();
+
 					}
 				} while (opcionTabla != 5);
 				break;
@@ -167,14 +177,22 @@ public class Principal {
 		} while (opcion != 5);
 		try {
 			conexion = DriverManager.getConnection(server + bbdd, user, pwd);
+
 			String consulta = "SELECT * FROM alumnos";
 			PreparedStatement ps = conexion.prepareStatement(consulta);
 			ResultSet res = ps.executeQuery();
 			ResultSetMetaData rmd = res.getMetaData();
-			System.out.println(rmd.getColumnName(1) + " " + rmd.getColumnName(2));
+
+			System.out.printf("%8s%25s%25s%25s%25s%n", rmd.getColumnName(1), rmd.getColumnName(2), rmd.getColumnName(3),
+					rmd.getColumnName(4), rmd.getColumnName(5));
+
+			for (int i = 0; i < 4 + 25 + 25 + 25 + 30; i++)
+				System.out.printf("=");
+			System.out.println();
 
 			while (res.next()) {
-				System.out.println(res.getInt(1) + " " + res.getString(2));
+				System.out.printf("%8s%25s%25s%25s%25s%n", res.getString(1), res.getString(2), res.getString(3),
+						res.getString(4), res.getString(5));
 			}
 			conexion.close();
 		} catch (SQLException sqle) {
