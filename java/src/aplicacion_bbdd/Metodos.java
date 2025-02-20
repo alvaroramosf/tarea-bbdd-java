@@ -10,22 +10,22 @@ public class Metodos {
 	static Connection conexion = null;
 
 	public static void mostrarDatosAlumnos() {
-		String consulta = "SELECT nif AS Identificación, apenom AS Nombre, direc AS Dirección, pobla AS Población, telef AS Teléfono FROM alumnos";
+		String consulta = "SELECT nif AS 'NIF Alumno', apenom AS Nombre, direc AS Dirección, pobla AS Población, telef AS Teléfono FROM alumnos";
 		mostrarDatos(consulta);
 	}
 
 	public static void mostrarDatosAsignaturas() {
-		String consulta = "SELECT cod AS Código, nombre AS Nombre, nif_profesor as 'Identificación Profesor' FROM asignaturas";
+		String consulta = "SELECT cod AS Código, nombre AS Nombre, nif_profesor as 'NIF Profesor' FROM asignaturas";
 		mostrarDatos(consulta);
 	}
 
 	public static void mostrarDatosNotas() {
-		String consulta = "SELECT nif AS Identificacion, cod_asignatura AS 'Código Asignatura', nota AS Notas FROM notas";
+		String consulta = "SELECT nif AS 'NIF Alumno', cod_asignatura AS 'Código Asignatura', nota AS Notas FROM notas";
 		mostrarDatos(consulta);
 	}
 
 	public static void mostrarDatosProfesores() {
-		String consulta = "SELECT nif AS Identificación, apenom AS Nombre, direc AS Dirección, pobla AS Población, telef AS Teléfono FROM profesores";
+		String consulta = "SELECT nif AS 'NIF Profesor', apenom AS Nombre, direc AS Dirección, pobla AS Población, telef AS Teléfono FROM profesores";
 		mostrarDatos(consulta);
 	}
 
