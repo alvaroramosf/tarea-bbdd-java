@@ -3,12 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 12-02-2025 a las 19:13:01
+-- Tiempo de generación: 20-02-2025 a las 18:44:13
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 8.3.1
-CREATE DATABASE equipo_colegio;
-USE equipo_colegio;
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,22 +52,23 @@ INSERT INTO `alumnos` (`nif`, `apenom`, `direc`, `pobla`, `telef`) VALUES
 
 CREATE TABLE `asignaturas` (
   `cod` tinyint(3) UNSIGNED NOT NULL,
-  `nombre` varchar(25) DEFAULT NULL
+  `nombre` varchar(25) DEFAULT NULL,
+  `nif_profesor` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `asignaturas`
 --
 
-INSERT INTO `asignaturas` (`cod`, `nombre`) VALUES
-(1, 'Prog. Leng. Estr.'),
-(2, 'Sist. Informáticos'),
-(3, 'Análisis'),
-(4, 'FOL'),
-(5, 'RET'),
-(6, 'Entornos Gráficos'),
-(7, 'Aplic. Entornos 4ªGen'),
-(8, 'Idioma');
+INSERT INTO `asignaturas` (`cod`, `nombre`, `nif_profesor`) VALUES
+(1, 'Prog. Leng. Estr.', '12344346'),
+(2, 'Sist. Informáticos', '12344346'),
+(3, 'Análisis', '12344346'),
+(4, 'FOL', '4448243'),
+(5, 'RET', '4448243'),
+(6, 'Entornos Gráficos', '4448243'),
+(7, 'Aplic. Entornos 4ªGen', '56882941'),
+(8, 'Idioma', '56882941');
 
 -- --------------------------------------------------------
 
@@ -138,7 +136,8 @@ ALTER TABLE `alumnos`
 -- Indices de la tabla `asignaturas`
 --
 ALTER TABLE `asignaturas`
-  ADD PRIMARY KEY (`cod`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `fk_profesor` (`nif_profesor`);
 
 --
 -- Indices de la tabla `notas`
@@ -158,6 +157,12 @@ ALTER TABLE `profesores`
 --
 
 --
+-- Filtros para la tabla `asignaturas`
+--
+ALTER TABLE `asignaturas`
+  ADD CONSTRAINT `fk_profesor` FOREIGN KEY (`nif_profesor`) REFERENCES `profesores` (`nif`);
+
+--
 -- Filtros para la tabla `notas`
 --
 ALTER TABLE `notas`
@@ -168,4 +173,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

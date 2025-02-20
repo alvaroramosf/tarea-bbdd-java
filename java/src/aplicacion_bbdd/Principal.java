@@ -10,7 +10,7 @@ public class Principal {
 		Scanner entrada = new Scanner(System.in);
 		String bbdd = "equipo_colegio";
 		String user = "root";
-		String pwd = "root";
+		String pwd = "";
 		String server = "jdbc:mysql://localhost:3306/";
 		Connection conexion = null;
 

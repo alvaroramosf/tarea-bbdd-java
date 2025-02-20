@@ -5,7 +5,7 @@ import java.sql.*;
 public class Metodos {
 	static String bbdd = "equipo_colegio";
 	static String user = "root";
-	static String pwd = "root";
+	static String pwd = "";
 	static String server = "jdbc:mysql://localhost:3306/";
 	static Connection conexion = null;
 
