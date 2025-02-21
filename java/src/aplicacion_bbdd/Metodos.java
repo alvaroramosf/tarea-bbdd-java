@@ -8,6 +8,8 @@ public class Metodos {
 	static String pwd = "";
 	static String server = "jdbc:mysql://localhost:3306/";
 	static Connection conexion = null;
+	
+	// CONSULTAS
 
 	public static void mostrarDatosAlumnos() {
 		String consulta = "SELECT nif AS 'NIF Alumno', apenom AS Nombre, direc AS Dirección, pobla AS Población, telef AS Teléfono FROM alumnos";
@@ -57,4 +59,47 @@ public class Metodos {
 			sqle.printStackTrace();
 		}
 	}
+	
+	//INSERTAR DATOS
+	
+	static void insertarAlumno(String nif, String apenom, String direc, String pobla, String telef) {
+	    String consulta = "INSERT INTO alumnos (nif, apenom, direc, pobla, telef) VALUES ('" 
+	        + nif + "', '" + apenom + "', '" + direc + "', '" + pobla + "', '" + telef + "')";
+	    modificarDatos(consulta);
+	}
+
+	static void insertarProfesor(String nif, String apenom, String direc, String pobla, String telef) {
+	    String consulta = "INSERT INTO profesores (nif, apenom, direc, pobla, telef) VALUES ('" 
+	        + nif + "', '" + apenom + "', '" + direc + "', '" + pobla + "', '" + telef + "')";
+	    modificarDatos(consulta);
+	}
+
+	static void insertarAsignatura(int cod, String nombre, String nif_profesor) {
+	    String consulta = "INSERT INTO asignaturas (cod, nombre, nif_profesor) VALUES (" 
+	        + cod + ", '" + nombre + "', '" + nif_profesor + "')";
+	    modificarDatos(consulta);
+	}
+
+	static void insertarNota(String nif, int cod_asignatura, float nota) {
+	    String consulta = "INSERT INTO notas (nif, cod_asignatura, nota) VALUES ('" 
+	        + nif + "', " + cod_asignatura + ", " + nota + ")";
+	    modificarDatos(consulta);
+	}
+
+	
+	
+	static void modificarDatos(String consulta) {
+	    try {
+	        conexion = DriverManager.getConnection(server + bbdd, user, pwd);
+	        PreparedStatement ps = conexion.prepareStatement(consulta);
+	        int filasAfectadas = ps.executeUpdate();
+	        
+	        System.out.println(filasAfectadas + "filas modificadas.");
+
+	    } catch (SQLException sqle) {
+	        sqle.printStackTrace();
+	    }
+	}
+	
+
 }
