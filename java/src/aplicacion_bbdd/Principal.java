@@ -53,7 +53,7 @@ public class Principal {
 						break;
 
 					default:
-						System.out.println("Opción inválida");
+						System.out.println("ERROR: Opción inválida");
 						System.out.println();
 
 					}
@@ -61,77 +61,71 @@ public class Principal {
 				break;
 
 			case 2:
-			    do {
-			        System.out.println("Introduce la tabla en la que deseas hacer el alta de un dato: \r\n" + "1. Tabla de alumnos\r\n" + "2. Tabla de asignaturas\r\n" + "3. Tabla de notas \r\n" + "4. Tabla de profesores\r\n" + "5. Menú principal");
-			        opcionTabla = entrada.nextInt();
-			        entrada.nextLine(); // Consumir la nueva línea
+				do {
+					System.out.println("Introduce la tabla en la que deseas hacer el alta de un dato: \r\n" + "1. Tabla de alumnos\r\n" + "2. Tabla de asignaturas\r\n" + "3. Tabla de notas \r\n" + "4. Tabla de profesores\r\n" + "5. Menú principal");
+					opcionTabla = entrada.nextInt();
+					entrada.nextLine();
 
-			        switch (opcionTabla) {
-			            case 1:
-			                // Insertar en alumnos
-			                System.out.print("Introduce el NIF del alumno: ");
-			                String nifAlumno = entrada.nextLine();
-			                System.out.print("Introduce el nombre y apellidos: ");
-			                String apenom = entrada.nextLine();
-			                System.out.print("Introduce la dirección: ");
-			                String direc = entrada.nextLine();
-			                System.out.print("Introduce la población: ");
-			                String pobla = entrada.nextLine();
-			                System.out.print("Introduce el teléfono: ");
-			                String telef = entrada.nextLine();
+					switch (opcionTabla) {
+						case 1:
+							System.out.print("Introduce el NIF del alumno: ");
+							String nifAlumno = entrada.nextLine();
+							System.out.print("Introduce el nombre y apellidos: ");
+							String apenom = entrada.nextLine();
+							System.out.print("Introduce la dirección: ");
+							String direc = entrada.nextLine();
+							System.out.print("Introduce la población: ");
+							String pobla = entrada.nextLine();
+							System.out.print("Introduce el teléfono: ");
+							String telef = entrada.nextLine();
+							Metodos.insertarAlumno(nifAlumno, apenom, direc, pobla, telef);
+							break;
 
-			                Metodos.insertarAlumno(nifAlumno, apenom, direc, pobla, telef);
-			                break;
+					   case 2:
+							System.out.print("Introduce el código de la asignatura: ");
+							int codAsignatura = entrada.nextInt();
+							entrada.nextLine() ;
+							System.out.print("Introduce el nombre de la asignatura: ");
+							String nombreAsignatura = entrada.nextLine();
+							System.out.print("Introduce el NIF del profesor: ");
+							String nifProfesor = entrada.nextLine();
 
-			            case 2:
-			                // Insertar en asignaturas
-			                System.out.print("Introduce el código de la asignatura: ");
-			                int codAsignatura = entrada.nextInt();
-			                entrada.nextLine(); // Consumir la nueva línea
-			                System.out.print("Introduce el nombre de la asignatura: ");
-			                String nombreAsignatura = entrada.nextLine();
-			                System.out.print("Introduce el NIF del profesor: ");
-			                String nifProfesor = entrada.nextLine();
+							Metodos.insertarAsignatura(codAsignatura, nombreAsignatura, nifProfesor);
+							break;
 
-			                Metodos.insertarAsignatura(codAsignatura, nombreAsignatura, nifProfesor);
-			                break;
+					   case 3:
+							System.out.print("Introduce el NIF del alumno: ");
+							String nifNota = entrada.nextLine();
+							System.out.print("Introduce el código de la asignatura: ");
+							int codNota = entrada.nextInt();
+							System.out.print("Introduce la nota: ");
+							float nota = entrada.nextFloat();
+							Metodos.insertarNota(nifNota, codNota, nota);
+							break;
 
-			            case 3:
-			                // Insertar en notas
-			                System.out.print("Introduce el NIF del alumno: ");
-			                String nifNota = entrada.nextLine();
-			                System.out.print("Introduce el código de la asignatura: ");
-			                int codNota = entrada.nextInt();
-			                System.out.print("Introduce la nota: ");
-			                float nota = entrada.nextFloat();
+						case 4:
+							System.out.print("Introduce el NIF del profesor: ");
+							String nifProf = entrada.nextLine();
+							System.out.print("Introduce el nombre y apellidos: ");
+							String apenomProf = entrada.nextLine();
+							System.out.print("Introduce la dirección: ");
+							String direcProf = entrada.nextLine();
+							System.out.print("Introduce la población: ");
+							String poblaProf = entrada.nextLine();
+							System.out.print("Introduce el teléfono: ");
+							String telefProf = entrada.nextLine();
 
-			                Metodos.insertarNota(nifNota, codNota, nota);
-			                break;
+							Metodos.insertarProfesor(nifProf, apenomProf, direcProf, poblaProf, telefProf);
+							break;
 
-			            case 4:
-			                // Insertar en profesores
-			                System.out.print("Introduce el NIF del profesor: ");
-			                String nifProf = entrada.nextLine();
-			                System.out.print("Introduce el nombre y apellidos: ");
-			                String apenomProf = entrada.nextLine();
-			                System.out.print("Introduce la dirección: ");
-			                String direcProf = entrada.nextLine();
-			                System.out.print("Introduce la población: ");
-			                String poblaProf = entrada.nextLine();
-			                System.out.print("Introduce el teléfono: ");
-			                String telefProf = entrada.nextLine();
+						case 5:
+							break;
 
-			                Metodos.insertarProfesor(nifProf, apenomProf, direcProf, poblaProf, telefProf);
-			                break;
-
-			            case 5:
-			                break;
-
-			            default:
-			                System.out.println("Opción inválida");
-			        }
-			    } while (opcionTabla != 5);
-			    
+						default:
+							System.out.println("ERROR: Opción inválida");
+					}
+				} while (opcionTabla != 5);
+				
 				break;
 
 			case 3:
@@ -140,30 +134,65 @@ public class Principal {
 							+ "2. Tabla de asignaturas\r\n" + "3. Tabla de notas \r\n" + "4. Tabla de profesores\r\n"
 							+ "5. Menú principal");
 					opcionTabla = entrada.nextInt();
+					entrada.nextLine();
 
-					switch (opcionTabla) {
-					case 1:
-						System.out.println("Visualización de la tabla1");
-						break;
+						switch (opcionTabla) {
+							case 1:
+								System.out.println("NIF del alumno?:");
+								String nifAlumno = entrada.nextLine();
+								System.out.println("Nuevo nombre:");
+								String nuevoNombreAlumno = entrada.nextLine();
+								System.out.println("Nueva direción:");
+								String nuevaDirecAlumno = entrada.nextLine();
+								System.out.println("Nueva población:");
+								String nuevaPoblaAlumno = entrada.nextLine();
+								System.out.println("Nuevo teléfono:");
+								String nuevoTelefAlumno = entrada.nextLine();
+								Metodos.modificarAlumno(nifAlumno, nuevoNombreAlumno, nuevaDirecAlumno, nuevaPoblaAlumno, nuevoTelefAlumno);
+								break;
 
-					case 2:
-						System.out.println("Visualización de la tabla2");
-						break;
+							case 2:
+								System.out.println("Codigo de la asignatura?:");
+								int codAsignatura = entrada.nextInt();
+								entrada.nextLine();
+								System.out.println("Nuevo nombre de la asignatura:");
+								String nuevoNombreAsignatura = entrada.nextLine();
+								System.out.println("Nuevo NIF del profesor:");
+								String nuevoNifProfesor = entrada.nextLine();
+								Metodos.modificarAsignatura(codAsignatura, nuevoNombreAsignatura, nuevoNifProfesor);
+								break;
 
-					case 3:
-						System.out.println("Visualización de la tabla3");
-						break;
+							case 3:
+								System.out.println("NIF del alumno?:");
+								String nifNota = entrada.nextLine();
+								System.out.println("Código asignatura?:");
+								int codNota = entrada.nextInt();
+								System.out.println("Nueva nota:");
+								float nuevaNota = entrada.nextFloat();
+								Metodos.modificarNota(nifNota, codNota, nuevaNota);
+								break;
 
-					case 4:
-						System.out.println("Visualización de la tabla4");
-						break;
+							case 4:
+								System.out.println("NIF del profesor?:");
+								String nifProfesor = entrada.nextLine();
+								System.out.println("Nuevo nombre:");
+								String nuevoNombreProfesor = entrada.nextLine();
+								System.out.println("Nueva direción:");
+								String nuevaDirecProfesor = entrada.nextLine();
+								System.out.println("Nueva población:");
+								String nuevaPoblaProfesor = entrada.nextLine();
+								System.out.println("Nuevo telefono:");
+								String nuevoTelefProfesor = entrada.nextLine();
+								Metodos.modificarProfesor(nifProfesor, nuevoNombreProfesor, nuevaDirecProfesor, nuevaPoblaProfesor, nuevoTelefProfesor);
+								break;
 
-					case 5:
-						break;
+							case 5:
 
-					default:
-						System.out.println("Opción inválida");
-					}
+								break;
+
+							default:
+								System.out.println("ERROR: Opción inválida");
+						}
 				} while (opcionTabla != 5);
 				break;
 
@@ -173,30 +202,41 @@ public class Principal {
 							+ "1. Tabla de alumnos\r\n" + "2. Tabla de asignaturas\r\n" + "3. Tabla de notas \r\n"
 							+ "4. Tabla de profesores\r\n" + "5. Menú principal");
 					opcionTabla = entrada.nextInt();
+					entrada.nextLine();
 
 					switch (opcionTabla) {
 					case 1:
-						System.out.println("Visualización de la tabla1");
+						System.out.println("NIF del alumno a eliminar?:");
+						String nifAlum = entrada.nextLine();
+						Metodos.eliminarAlumno(nifAlum);
 						break;
 
 					case 2:
-						System.out.println("Visualización de la tabla2");
+						System.out.println("Código de la asignatura a eliminar?:");
+						int codigo = entrada.nextInt();
+						Metodos.eliminarAsignatura(codigo);
 						break;
 
 					case 3:
-						System.out.println("Visualización de la tabla3");
+						System.out.println("NIF del alumno?:");
+						String nifAlumAsign = entrada.nextLine();
+						System.out.println("Codigo de la asignatura?:");
+						int codigoAsig = entrada.nextInt();
+						Metodos.eliminarNota(nifAlumAsign, codigoAsig);
 						break;
 
 					case 4:
-						System.out.println("Visualización de la tabla4");
+						System.out.println("NIF del profesor a borar?:");
+						String nifProf = entrada.nextLine();
+						Metodos.eliminarProfesor(nifProf);
 						break;
 
 					case 5:
 						break;
 
 					default:
-						System.out.println("Opción inválida");
-					}
+						System.out.println("ERROR: Opción inválida");
+				}
 				} while (opcionTabla != 5);
 				break;
 
@@ -205,12 +245,12 @@ public class Principal {
 				break;
 
 			default:
-				System.out.println("Opción inválida");
+				System.out.println("ERROR: Opción inválida");
 
 			}
 		} while (opcion != 5);
 
-		System.out.println("Programa finalizado");
+		System.out.println("Cerrando el programa...");
 		entrada.close();
 
 	}
