@@ -8,7 +8,7 @@ public class Metodos {
 	static String pwd = "";
 	static String server = "jdbc:mysql://localhost:3306/";
 	static Connection conexion = null;
-	
+
 	// CONSULTAS
 
 	public static void mostrarDatosAlumnos() {
@@ -59,62 +59,63 @@ public class Metodos {
 			sqle.printStackTrace();
 		}
 	}
-	
-	//INSERTAR (ALTA) DATOS
-	
+
+	// INSERTAR (ALTA) DATOS
+
 	static void insertarAlumno(String nif, String apenom, String direc, String pobla, String telef) {
-		String consulta = "INSERT INTO alumnos (nif, apenom, direc, pobla, telef) VALUES ('" 
-			+ nif + "', '" + apenom + "', '" + direc + "', '" + pobla + "', '" + telef + "')";
+		String consulta = "INSERT INTO alumnos (nif, apenom, direc, pobla, telef) VALUES ('" + nif + "', '" + apenom
+				+ "', '" + direc + "', '" + pobla + "', '" + telef + "')";
 		modificarDatos(consulta);
 	}
 
 	static void insertarProfesor(String nif, String apenom, String direc, String pobla, String telef) {
-		String consulta = "INSERT INTO profesores (nif, apenom, direc, pobla, telef) VALUES ('" 
-			+ nif + "', '" + apenom + "', '" + direc + "', '" + pobla + "', '" + telef + "')";
+		String consulta = "INSERT INTO profesores (nif, apenom, direc, pobla, telef) VALUES ('" + nif + "', '" + apenom
+				+ "', '" + direc + "', '" + pobla + "', '" + telef + "')";
 		modificarDatos(consulta);
 	}
 
 	static void insertarAsignatura(int cod, String nombre, String nif_profesor) {
-		String consulta = "INSERT INTO asignaturas (cod, nombre, nif_profesor) VALUES (" 
-			+ cod + ", '" + nombre + "', '" + nif_profesor + "')";
+		String consulta = "INSERT INTO asignaturas (cod, nombre, nif_profesor) VALUES (" + cod + ", '" + nombre + "', '"
+				+ nif_profesor + "')";
 		modificarDatos(consulta);
 	}
 
 	static void insertarNota(String nif, int cod_asignatura, float nota) {
-		String consulta = "INSERT INTO notas (nif, cod_asignatura, nota) VALUES ('" 
-			+ nif + "', " + cod_asignatura + ", " + nota + ")";
-		modificarDatos(consulta);
-	}
-	
-	//MODIFICAR DATOS
-	
-	static void modificarAlumno(String nif, String nuevoNombre, String nuevaDirec, String nuevaPobla, String nuevoTelef) {
-		String consulta = "UPDATE alumnos SET apenom = '" + nuevoNombre + "', direc = '" 
-				+ nuevaDirec + "', pobla = '" + nuevaPobla + "', telef = '" + nuevoTelef + "' WHERE nif = '" + nif + "'";
+		String consulta = "INSERT INTO notas (nif, cod_asignatura, nota) VALUES ('" + nif + "', " + cod_asignatura
+				+ ", " + nota + ")";
 		modificarDatos(consulta);
 	}
 
-	static void modificarProfesor(String nif, String nuevoNombre, String nuevaDirec, String nuevaPobla, String nuevoTelef) {
-		String consulta = "UPDATE profesores SET apenom = '" + nuevoNombre + "', direc = '" + nuevaDirec + 
-						  "', pobla = '" + nuevaPobla + "', telef = '" + nuevoTelef + "' WHERE nif = '" + nif + "'";
+	// MODIFICAR DATOS
+
+	static void modificarAlumno(String nif, String nuevoNombre, String nuevaDirec, String nuevaPobla,
+			String nuevoTelef) {
+		String consulta = "UPDATE alumnos SET apenom = '" + nuevoNombre + "', direc = '" + nuevaDirec + "', pobla = '"
+				+ nuevaPobla + "', telef = '" + nuevoTelef + "' WHERE nif = '" + nif + "'";
+		modificarDatos(consulta);
+	}
+
+	static void modificarProfesor(String nif, String nuevoNombre, String nuevaDirec, String nuevaPobla,
+			String nuevoTelef) {
+		String consulta = "UPDATE profesores SET apenom = '" + nuevoNombre + "', direc = '" + nuevaDirec
+				+ "', pobla = '" + nuevaPobla + "', telef = '" + nuevoTelef + "' WHERE nif = '" + nif + "'";
 		modificarDatos(consulta);
 	}
 
 	static void modificarAsignatura(int cod, String nuevoNombre, String nuevoNifProfesor) {
-		String consulta = "UPDATE asignaturas SET nombre = '" + nuevoNombre + "', nif_profesor = '" + nuevoNifProfesor + 
-						  "' WHERE cod = " + cod;
+		String consulta = "UPDATE asignaturas SET nombre = '" + nuevoNombre + "', nif_profesor = '" + nuevoNifProfesor
+				+ "' WHERE cod = " + cod;
 		modificarDatos(consulta);
 	}
-
 
 	static void modificarNota(String nif, int codAsignatura, float nuevaNota) {
-		String consulta = "UPDATE notas SET nota = " + nuevaNota + " WHERE nif = '" + nif + "' AND cod_asignatura = " + codAsignatura;
+		String consulta = "UPDATE notas SET nota = " + nuevaNota + " WHERE nif = '" + nif + "' AND cod_asignatura = "
+				+ codAsignatura;
 		modificarDatos(consulta);
 	}
 
+	// ELIMINAR DATOS
 
-	//ELIMINAR DATOS
-	
 	static void eliminarAlumno(String nif) {
 		String consulta = "DELETE FROM alumnos WHERE nif = '" + nif + "'";
 		modificarDatos(consulta);
@@ -140,16 +141,16 @@ public class Metodos {
 			conexion = DriverManager.getConnection(server + bbdd, user, pwd);
 			PreparedStatement ps = conexion.prepareStatement(consulta);
 			int filasAfectadas = ps.executeUpdate();
-			
-			System.out.println(filasAfectadas + "filas modificadas.");
+			if (filasAfectadas == 0) {
+				System.out.println("Atención, dato introducido incorrecto! (no se han realizado cambios)");
+			} else {
+				System.out.println(filasAfectadas + " filas modificadas.");
+
+			}
 
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
 	}
-	
-
-			
-	
 
 }
