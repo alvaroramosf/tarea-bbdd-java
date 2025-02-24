@@ -143,8 +143,10 @@ public class Metodos {
 			int filasAfectadas = ps.executeUpdate();
 			if (filasAfectadas == 0) {
 				System.out.println("Atención, dato introducido incorrecto! (no se han realizado cambios)");
+				System.out.println();
 			} else {
 				System.out.println(filasAfectadas + " filas modificadas.");
+				System.out.println();
 
 			}
 
